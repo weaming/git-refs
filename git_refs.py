@@ -45,7 +45,7 @@ def main():
                 ref.ref
             except TypeError as e:
                 remote_hexsha = str(e).rsplit("to", 1)[1].strip(" '")
-            myprint("remote", "reference", ref.remote_head, remote_hexsha)
+            myprint("remote", "reference", ref.remote_head, remote_hexsha, remote.name)
 
 
 if __name__ == "__main__":

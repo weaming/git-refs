@@ -3,7 +3,7 @@ gh_repo = 'https://github.com/weaming/git-refs'
 
 setup(
     name='git-refs',  # Required
-    version='0.1.1',  # Required
+    version='0.1.2',  # Required
     description='list git references(branches, tags) on local and remote repositories',  # Required
     url=gh_repo,  # Optional
     author='weaming',  # Optional
