@@ -11,7 +11,7 @@ CSV = bool(os.getenv("CSV"))
 
 def myprint(*args):
     if CSV:
-        print(",".join(str(x) for x in args))
+        print(",".join(str(x) for x in (list(args)+['']*(5-len(args)))))
     else:
         print(*args)
 
@@ -24,14 +24,17 @@ def main():
 
     r = Repo(path)
     if CSV:
-        print("where,type,name,sha")
+        print("where,type,name,sha,remote")
 
     for x in r.tags:
         myprint("local", "tag", x.name, x.commit.hexsha)
     for x in r.branches:
         tb = x.tracking_branch()
         if tb:
-            myprint("local", "branch", x.name, x.commit.hexsha, "->", tb.name)
+            if CSV:
+                myprint("local", "branch", x.name, x.commit.hexsha, tb.name)
+            else:
+                myprint("local", "branch", x.name, x.commit.hexsha, "->", tb.name)
         else:
             myprint("local", "branch", x.name, x.commit.hexsha, "", "")
 
